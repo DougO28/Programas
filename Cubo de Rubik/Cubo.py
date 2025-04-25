@@ -1,42 +1,20 @@
-import pygame
-import sys
+class CuboRubik:
+    def __init__(self):
+        self.caras = {
+            'U': ['W']*9,
+            'D': ['Y']*9,
+            'L': ['O']*9,
+            'R': ['R']*9,
+            'F': ['G']*9,
+            'B': ['B']*9,
+        }
 
-pygame.init()
+    def rotar_horario(self, cara):
+        c = self.caras[cara]
+        self.caras[cara] = [c[i] for i in [6, 3, 0, 7, 4, 1, 8, 5, 2]]
 
-
-width, height = 640, 480
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Cubo de Rubik")
-#cubo de rubik
-
-
-#variables globales
-cubo = {
-    'U': ['W']*9, #color blanco
-    'U': ['Y']*9, #color amarillo
-    'L': ['O']*9, #Color anaranjado
-    'R': ['R']*9, #color rojo
-    'F': ['G']*9, #color verde
-    'B': ['B']*9  #color azul
-}
-
-#Movimientos
-
-def mover_U(cubo):
-    #Rota la cara U en sentido contrario
-    cubo['U'] = rotar_horario(cubo['U'])
-
-    #Mueve las filas superiores de las caras 
-
-    temp = cubo['F'][:3]
-    cubo['F'][:3] = cubo['R'][:3]
-    cubo['R'][:3] = cubo['B'][:3]
-    cubo['B'][:3] = cubo['L'][:3]
-    cubo['L'][:3] = temp
-
-#Funcion rotar cara
-def rotar_horario(cara):
-    return [cara[i] for i in [6,3,0,7,4,1,8,5,2]]
-
+    def mover_U(self):
+        self.rotar_horario('U')        # Solo ejemplo simple sin afectar bordes aún
+ 
 
 
